@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import BpmnModeler from "./BpmnModeler.es";
+import BpmnViewer from "./BpmnViewer.es";
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 const RootComponent = () => {
 
     return (
-            <BpmnModeler />
+            <BpmnViewer />
     )
 };
 

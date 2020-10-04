@@ -1,21 +1,26 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Viewer from 'bpmn-js/lib/Viewer';
 import axios from 'axios';
 import {is} from "bpmn-js/lib/util/ModelUtil";
+import Annotation from "./annotation/Annotation.es";
+import DataObjects from "./dataobjects/DataObjects.es";
+import DataStore from "./datastores/DataStore.es";
 
-const BpmnModeler = () => {
+const BpmnViewer = () => {
+
+    let viewer;
+    const [canvas, setCanvas] = useState(null);
+    const [elementRegistry, setElementRegistry] = useState(null);
+
+
+    const [allAnnotations, setAllAnnotations] = useState(null);
+    const [allDataObjects, setAllDataObjects] = useState(null);
+    const [allDataStores, setAllDataStores] = useState(null);
 
     useEffect(() => {
         setupModeler()
-    });
+    },[]);
 
-    let viewer;
-
-    let allAnnotationsCopy;
-
-    let allAnnotations;
-    let allDataObjects;
-    let allDataStores;
 
     const setupModeler = () => {
 
@@ -26,19 +31,22 @@ const BpmnModeler = () => {
         //get the bpmn file over inet (xml file format) later this should be replaced with load file from explorer
         let diagramUrl = 'https://cdn.staticaly.com/gh/bpmn-io/bpmn-js-examples/dfceecba/starter/diagram.bpmn';
         viewer = new Viewer({container: '#canvas'});
-        console.log("gg");
-
 
 
         axios.get('diagram_data_flow.bpmn')
             .then((response) => {
                 console.log(response);
-                viewer.importXML(response.data);
-
-                let canvas = viewer.get('canvas');
-                //canvas.zoom('fit-viewport');
-
-        })
+                viewer.importXML(response.data).then(
+                    ()=>{
+                        setCanvas(viewer.get('canvas'));
+                        setElementRegistry(viewer.get('elementRegistry'));
+                        setAllAnnotations(selectElements('TextAnnotation'));
+                        setAllDataObjects(selectElements('DataObjectReference'));
+                        setAllDataStores(selectElements('DataStoreReference'));
+                        //canvas.zoom('fit-viewport');
+                    }
+                );
+            })
             .catch(e => console.log(e))
     };
 
@@ -59,7 +67,6 @@ const BpmnModeler = () => {
      * @param connectionArray is array which contains all incoming or outgoing connections
      */
     const removeConnectionArray = (connectionArray) => {
-        let canvas = viewer.get('canvas');
         connectionArray.forEach((con, index)=>{
             canvas.removeConnection(con);
         });
@@ -70,7 +77,6 @@ const BpmnModeler = () => {
      * @param elements all Elements which must be removed
      */
     const removeElements = (elements) => {
-        let canvas = viewer.get('canvas');
         elements.forEach((elem, index)=>{
             removeConnections(elem);
             canvas.removeShape(elem);
@@ -94,7 +100,6 @@ const BpmnModeler = () => {
      * @param connectionArray is array which contains all incoming or outgoing connections
      */
     const addConnectionArray = (connectionArray) => {
-        let canvas = viewer.get('canvas');
         connectionArray.forEach((con, index)=>{
             canvas.addConnection(con);
         });
@@ -105,68 +110,34 @@ const BpmnModeler = () => {
      * @param elements all Elements which must be removed
      */
     const addElements = (elements) => {
-        let canvas = viewer.get('canvas');
-        elements.forEach((elem, index)=>{
-            addConnections(elem);
-            canvas.addShape(elem);
+        elements.forEach((elem, index) => {
+            if (!elementRegistry.get(elem.id)) {
+                addConnections(elem);
+                canvas.addShape(elem);
+            }
         });
     };
 
-    const selectAllAnnotations = () => {
-        let elementRegistry = viewer.get('elementRegistry');
-        allAnnotations = elementRegistry.filter(function(element) {
-            return is(element, 'bpmn:TextAnnotation');
+
+    /**
+     * select all elements with given bpmn Element name
+     * @param bpmnElementName
+     * @returns array filled with model elements
+     */
+    const selectElements = (bpmnElementName) => {
+        return viewer.get('elementRegistry').filter(function(element) {
+            return is(element, 'bpmn:' + bpmnElementName);
         });
-        console.log(elementRegistry);
-        console.log(allAnnotations);
-        console.log(viewer);
-        allAnnotationsCopy = [...allAnnotations];
-    };
-
-    const hideAnnotation = () => {
-        //TODO: move the select method after load bpmn
-        selectAllAnnotations();
-        console.log(allAnnotations);
-        removeElements(allAnnotations);
-    };
-
-    const showAnnotation = () => {
-        addElements(allAnnotations);
-    };
-
-    const selectAllDataObj = () => {
-        let elementRegistry = viewer.get('elementRegistry');
-        allDataObjects = elementRegistry.filter(function(element) {
-            return is(element, 'bpmn:DataObjectReference');
-        });
-        console.log(elementRegistry);
-        console.log(allDataObjects);
-        console.log(viewer);
-    };
-
-    const hideDataObj = () => {
-        //TODO: move the select method after load bpmn
-        selectAllDataObj();
-        console.log(allDataObjects);
-        removeElements(allDataObjects);
-    };
-
-    const showDataObj = () => {
-        addElements(allDataObjects);
     };
 
     return (
         <>
             <div id="canvas"/>
-            <button className="btn-primary btn" onClick={()=>hideAnnotation()} >Hide Annotation</button>
-            <button className="btn-primary btn" onClick={()=>showAnnotation()} >Show Annotation</button>
-            <button className="btn-primary btn" onClick={()=>hideDataObj()} >Hide Data Object</button>
-            <button className="btn-primary btn" onClick={()=>showDataObj()} >Show Data Object</button>
-            {/* TODO: implement and adapt correct methods */}
-            <button className="btn-primary btn" onClick={()=>hideAnnotation()} >Hide Data Store</button>
-            <button className="btn-primary btn" onClick={()=>showAnnotation()} >Show Data Store</button>
+            <Annotation allAnnotations={allAnnotations} removeElements={removeElements} addElements={addElements} />
+            <DataObjects allDataObjects={allDataObjects} removeElements={removeElements} addElements={addElements} />
+            <DataStore allDataStores={allDataStores} removeElements={removeElements} addElements={addElements} />
         </>
     );
 };
 
-export default BpmnModeler;
+export default BpmnViewer;
