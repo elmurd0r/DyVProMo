@@ -125,7 +125,7 @@ const BpmnViewer = () => {
      * @returns array filled with model elements
      */
     const selectElements = (bpmnElementName) => {
-        return viewer.get('elementRegistry').filter(function(element) {
+        return viewer.get('elementRegistry').filter((element) => {
             return is(element, 'bpmn:' + bpmnElementName);
         });
     };
