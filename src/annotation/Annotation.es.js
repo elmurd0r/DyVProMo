@@ -1,8 +1,6 @@
-import React from 'react';
+import React from "react";
 
-const Annotation =  ({ allAnnotations, removeElements, addElements}) => {
-
-
+const Annotation = ({ allAnnotations, removeElements, addElements }) => {
     const hideAnnotation = () => {
         removeElements(allAnnotations);
     };
@@ -13,8 +11,18 @@ const Annotation =  ({ allAnnotations, removeElements, addElements}) => {
 
     return (
         <>
-            <button className="btn-primary btn" onClick={()=>hideAnnotation()} >Hide Annotation</button>
-            <button className="btn-primary btn" onClick={()=>showAnnotation()} >Show Annotation</button>
+            <button
+                className="btn-primary btn"
+                onClick={() => hideAnnotation()}
+            >
+                Hide Annotation
+            </button>
+            <button
+                className="btn-primary btn"
+                onClick={() => showAnnotation()}
+            >
+                Show Annotation
+            </button>
         </>
     );
 };

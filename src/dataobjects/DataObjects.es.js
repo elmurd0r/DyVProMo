@@ -1,8 +1,6 @@
-import React from 'react';
+import React from "react";
 
-const DataObjects =  ({ allDataObjects, removeElements, addElements}) => {
-
-
+const DataObjects = ({ allDataObjects, removeElements, addElements }) => {
     const hideDataObj = () => {
         removeElements(allDataObjects);
     };
@@ -13,8 +11,12 @@ const DataObjects =  ({ allDataObjects, removeElements, addElements}) => {
 
     return (
         <>
-            <button className="btn-primary btn" onClick={()=>hideDataObj()} >Hide Data Object</button>
-            <button className="btn-primary btn" onClick={()=>showDataObj()} >Show Data Object</button>
+            <button className="btn-primary btn" onClick={() => hideDataObj()}>
+                Hide Data Object
+            </button>
+            <button className="btn-primary btn" onClick={() => showDataObj()}>
+                Show Data Object
+            </button>
         </>
     );
 };

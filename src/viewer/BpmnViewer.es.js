@@ -1,53 +1,39 @@
-import React, {useEffect, useState} from 'react';
-import Viewer from 'bpmn-js/lib/Viewer';
-import axios from 'axios';
-import {is} from "bpmn-js/lib/util/ModelUtil";
-import Annotation from "./annotation/Annotation.es";
-import DataObjects from "./dataobjects/DataObjects.es";
-import DataStore from "./datastores/DataStore.es";
+import React, { useEffect, useState } from "react";
+import NavigatedViewer from "bpmn-js/lib/NavigatedViewer";
+import { is } from "bpmn-js/lib/util/ModelUtil";
+import Annotation from "../annotation/Annotation.es";
+import DataObjects from "../dataobjects/DataObjects.es";
+import DataStore from "../datastores/DataStore.es";
 
-const BpmnViewer = () => {
-
+const BpmnViewer = ({ fileData, setFileData }) => {
     let viewer;
     const [canvas, setCanvas] = useState(null);
     const [elementRegistry, setElementRegistry] = useState(null);
-
 
     const [allAnnotations, setAllAnnotations] = useState(null);
     const [allDataObjects, setAllDataObjects] = useState(null);
     const [allDataStores, setAllDataStores] = useState(null);
 
     useEffect(() => {
-        setupModeler()
-    },[]);
-
+        setupModeler();
+    }, []);
 
     const setupModeler = () => {
+        //viewer = new Viewer({container: '#canvas'});
+        viewer = new NavigatedViewer({ container: "#canvas" });
 
-        //Modeler to model BPMN 2.0 diagrams but this should not be wanted
-        //don't forget the import if necessary contrary to expectation
-        //let modeler = new Modeler({container: '#canvas'});
+        importXML(fileData);
+    };
 
-        //get the bpmn file over inet (xml file format) later this should be replaced with load file from explorer
-        let diagramUrl = 'https://cdn.staticaly.com/gh/bpmn-io/bpmn-js-examples/dfceecba/starter/diagram.bpmn';
-        viewer = new Viewer({container: '#canvas'});
-
-
-        axios.get('diagram_data_flow.bpmn')
-            .then((response) => {
-                console.log(response);
-                viewer.importXML(response.data).then(
-                    ()=>{
-                        setCanvas(viewer.get('canvas'));
-                        setElementRegistry(viewer.get('elementRegistry'));
-                        setAllAnnotations(selectElements('TextAnnotation'));
-                        setAllDataObjects(selectElements('DataObjectReference'));
-                        setAllDataStores(selectElements('DataStoreReference'));
-                        //canvas.zoom('fit-viewport');
-                    }
-                );
-            })
-            .catch(e => console.log(e))
+    const importXML = (fileData) => {
+        viewer.importXML(fileData).then(() => {
+            setCanvas(viewer.get("canvas"));
+            setElementRegistry(viewer.get("elementRegistry"));
+            setAllAnnotations(selectElements("TextAnnotation"));
+            setAllDataObjects(selectElements("DataObjectReference"));
+            setAllDataStores(selectElements("DataStoreReference"));
+            viewer.get("canvas").zoom("fit-viewport");
+        });
     };
 
     /**
@@ -67,7 +53,7 @@ const BpmnViewer = () => {
      * @param connectionArray is array which contains all incoming or outgoing connections
      */
     const removeConnectionArray = (connectionArray) => {
-        connectionArray.forEach((con, index)=>{
+        connectionArray.forEach((con, index) => {
             canvas.removeConnection(con);
         });
     };
@@ -77,7 +63,7 @@ const BpmnViewer = () => {
      * @param elements all Elements which must be removed
      */
     const removeElements = (elements) => {
-        elements.forEach((elem, index)=>{
+        elements.forEach((elem, index) => {
             removeConnections(elem);
             canvas.removeShape(elem);
         });
@@ -100,7 +86,7 @@ const BpmnViewer = () => {
      * @param connectionArray is array which contains all incoming or outgoing connections
      */
     const addConnectionArray = (connectionArray) => {
-        connectionArray.forEach((con, index)=>{
+        connectionArray.forEach((con, index) => {
             canvas.addConnection(con);
         });
     };
@@ -118,24 +104,40 @@ const BpmnViewer = () => {
         });
     };
 
-
     /**
      * select all elements with given bpmn Element name
      * @param bpmnElementName
      * @returns array filled with model elements
      */
     const selectElements = (bpmnElementName) => {
-        return viewer.get('elementRegistry').filter((element) => {
-            return is(element, 'bpmn:' + bpmnElementName);
+        return viewer.get("elementRegistry").filter((element) => {
+            return is(element, "bpmn:" + bpmnElementName);
         });
     };
 
     return (
         <>
-            <div id="canvas"/>
-            <Annotation allAnnotations={allAnnotations} removeElements={removeElements} addElements={addElements} />
-            <DataObjects allDataObjects={allDataObjects} removeElements={removeElements} addElements={addElements} />
-            <DataStore allDataStores={allDataStores} removeElements={removeElements} addElements={addElements} />
+            <div id="canvas" />
+            <Annotation
+                allAnnotations={allAnnotations}
+                removeElements={removeElements}
+                addElements={addElements}
+            />
+            <DataObjects
+                allDataObjects={allDataObjects}
+                removeElements={removeElements}
+                addElements={addElements}
+            />
+            <DataStore
+                allDataStores={allDataStores}
+                removeElements={removeElements}
+                addElements={addElements}
+            />
+            <button
+                type="button"
+                className="btn-close bdv-close-btn"
+                onClick={() => setFileData(null)}
+            />
         </>
     );
 };
