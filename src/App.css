@@ -1,5 +1,53 @@
-html, body, #root, #canvas {
-  height: 100%;
-  padding: 0;
-  margin: 0;
+html,
+body,
+#root,
+#canvas {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.bdv-dropzone {
+    cursor: pointer;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-width: 2px;
+    border-radius: 2px;
+    border-style: dashed;
+    background-color: #fafafa;
+    color: #a2a2a2;
+    outline: none;
+    transition: border 0.24s ease-in-out;
+}
+
+.bdv-dropzone-draged {
+    color: #0d462c;
+    background-color: #d1e7dd;
+}
+
+.bdv-dropzone-reject {
+    color: #721c24;
+    background-color: #f8d7da;
+}
+
+.bdv-file-alert {
+    position: relative;
+    padding: 1rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+
+.bdv-h-44 {
+    height: 44%;
+}
+
+.bdv-close-btn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    font-size: x-large;
 }
