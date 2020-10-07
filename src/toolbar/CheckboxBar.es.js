@@ -1,9 +1,15 @@
-import React from 'react';
+import React from "react";
 import Annotation from "../annotation/Annotation.es";
 import DataObjects from "../dataobjects/DataObjects.es";
 import DataStore from "../datastores/DataStore.es";
 
-const CheckboxBar = ({ addElements, removeElements, allAnnotations, allDataObjects, allDataStores }) => {
+const CheckboxBar = ({
+    addElements,
+    removeElements,
+    allAnnotations,
+    allDataObjects,
+    allDataStores,
+}) => {
     return (
         <div className="bdv-checkbox-bar bdv-toolbar-ctrl p-2">
             <Annotation

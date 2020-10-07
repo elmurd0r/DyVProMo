@@ -116,7 +116,14 @@ const BpmnViewer = ({ fileData, setFileData }) => {
     return (
         <>
             <div id="canvas" />
-            <Toolbar setFileData={setFileData} addElements={addElements} removeElements={removeElements} allAnnotations={allAnnotations} allDataObjects={allDataObjects} allDataStores={allDataStores} />
+            <Toolbar
+                setFileData={setFileData}
+                addElements={addElements}
+                removeElements={removeElements}
+                allAnnotations={allAnnotations}
+                allDataObjects={allDataObjects}
+                allDataStores={allDataStores}
+            />
         </>
     );
 };

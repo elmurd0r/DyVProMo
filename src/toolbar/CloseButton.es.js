@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-const CloseButton =  ({setFileData}) => {
+const CloseButton = ({ setFileData }) => {
     return (
         <button
             type="button"
