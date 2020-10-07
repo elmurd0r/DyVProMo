@@ -41,6 +41,18 @@ body,
     border-radius: 0.25rem;
 }
 
+.bdv-checkbox-bar {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}
+
+.bdv-toolbar-ctrl {
+    background: #FAFAFA;
+    border-radius: 2px;
+    border: solid 1px #E0E0E0;
+}
+
 .bdv-h-44 {
     height: 44%;
 }
