@@ -2,29 +2,21 @@
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="7.3.0" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd">
   <collaboration id="sid-c0e745ff-361e-4afb-8c8d-2a1fc32b1424">
     <participant id="sid-87F4C1D6-25E1-4A45-9DA7-AD945993D06F" name="Customer" processRef="sid-C3803939-0872-457F-8336-EAE484DC4A04" />
+    <participant id="Participant_03l0jtk" name="Testpool" />
+    <messageFlow id="Flow_1hdt5ui" sourceRef="sid-52EB1772-F36E-433E-8F5B-D5DFD26E6F26" targetRef="Participant_03l0jtk" />
   </collaboration>
   <process id="sid-C3803939-0872-457F-8336-EAE484DC4A04" name="Customer" processType="None" isClosed="false" isExecutable="false">
     <extensionElements />
     <laneSet id="sid-b167d0d7-e761-4636-9200-76b7f0e8e83a">
       <lane id="sid-57E4FE0D-18E4-478D-BC5D-B15164E93254">
-        <flowNodeRef>sid-52EB1772-F36E-433E-8F5B-D5DFD26E6F26</flowNodeRef>
         <flowNodeRef>sid-E49425CF-8287-4798-B622-D2A7D78EF00B</flowNodeRef>
         <flowNodeRef>sid-D7F237E8-56D0-4283-A3CE-4F0EFE446138</flowNodeRef>
         <flowNodeRef>sid-E433566C-2289-4BEB-A19C-1697048900D2</flowNodeRef>
         <flowNodeRef>sid-5134932A-1863-4FFA-BB3C-A4B4078B11A9</flowNodeRef>
         <flowNodeRef>SCAN_OK</flowNodeRef>
+        <flowNodeRef>sid-52EB1772-F36E-433E-8F5B-D5DFD26E6F26</flowNodeRef>
       </lane>
     </laneSet>
-    <task id="sid-52EB1772-F36E-433E-8F5B-D5DFD26E6F26" name="Scan QR code">
-      <incoming>sid-4DC479E5-5C20-4948-BCFC-9EC5E2F66D8D</incoming>
-      <outgoing>sid-EE8A7BA0-5D66-4F8B-80E3-CC2751B3856A</outgoing>
-      <dataOutputAssociation id="DataOutputAssociation_0sh730x">
-        <targetRef>DataStoreReference_07122vx</targetRef>
-      </dataOutputAssociation>
-      <dataOutputAssociation id="DataOutputAssociation_1srw0p9">
-        <targetRef>DataObjectReference_0ft8w1a</targetRef>
-      </dataOutputAssociation>
-    </task>
     <task id="sid-E49425CF-8287-4798-B622-D2A7D78EF00B" name="Open product information in mobile  app">
       <incoming>sid-8B820AF5-DC5C-4618-B854-E08B71FB55CB</incoming>
       <outgoing>sid-57EB1F24-BD94-479A-BF1F-57F1EAA19C6C</outgoing>
@@ -63,6 +55,16 @@
     <dataObjectReference id="DataObjectReference_0ft8w1a" dataObjectRef="DataObject_1i35mym" />
     <dataObject id="DataObject_1i35mym" />
     <dataStoreReference id="DataStoreReference_07122vx" />
+    <sendTask id="sid-52EB1772-F36E-433E-8F5B-D5DFD26E6F26" name="Scan QR code">
+      <incoming>sid-4DC479E5-5C20-4948-BCFC-9EC5E2F66D8D</incoming>
+      <outgoing>sid-EE8A7BA0-5D66-4F8B-80E3-CC2751B3856A</outgoing>
+      <dataOutputAssociation id="DataOutputAssociation_0sh730x">
+        <targetRef>DataStoreReference_07122vx</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation id="DataOutputAssociation_1srw0p9">
+        <targetRef>DataObjectReference_0ft8w1a</targetRef>
+      </dataOutputAssociation>
+    </sendTask>
     <textAnnotation id="TextAnnotation_1b3aco1">
       <text>Test2</text>
     </textAnnotation>
@@ -83,47 +85,6 @@
       <bpmndi:BPMNShape id="sid-57E4FE0D-18E4-478D-BC5D-B15164E93254_gui" bpmnElement="sid-57E4FE0D-18E4-478D-BC5D-B15164E93254" isHorizontal="true">
         <omgdc:Bounds x="183" y="80" width="1137" height="400" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="TextAnnotation_1b3aco1_di" bpmnElement="TextAnnotation_1b3aco1">
-        <omgdc:Bounds x="900" y="150" width="100" height="30" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="TextAnnotation_0gi0jc4_di" bpmnElement="TextAnnotation_0gi0jc4">
-        <omgdc:Bounds x="570" y="150" width="100" height="30" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="sid-7B791A11-2F2E-4D80-AFB3-91A02CF2B4FD_gui" bpmnElement="sid-7B791A11-2F2E-4D80-AFB3-91A02CF2B4FD">
-        <omgdi:waypoint x="293" y="270" />
-        <omgdi:waypoint x="345" y="270" />
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="204" y="185" width="90" height="20" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="sid-EE8A7BA0-5D66-4F8B-80E3-CC2751B3856A_gui" bpmnElement="sid-EE8A7BA0-5D66-4F8B-80E3-CC2751B3856A">
-        <omgdi:waypoint x="563" y="270" />
-        <omgdi:waypoint x="655" y="270" />
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="494" y="185" width="90" height="20" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="sid-57EB1F24-BD94-479A-BF1F-57F1EAA19C6C_gui" bpmnElement="sid-57EB1F24-BD94-479A-BF1F-57F1EAA19C6C">
-        <omgdi:waypoint x="898" y="270" />
-        <omgdi:waypoint x="971" y="270" />
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="820" y="185" width="90" height="20" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="sid-8B820AF5-DC5C-4618-B854-E08B71FB55CB_gui" bpmnElement="sid-8B820AF5-DC5C-4618-B854-E08B71FB55CB">
-        <omgdi:waypoint x="705" y="270" />
-        <omgdi:waypoint x="798" y="270" />
-        <bpmndi:BPMNLabel labelStyle="sid-e0502d32-f8d1-41cf-9c4a-cbb49fecf581">
-          <omgdc:Bounds x="713" y="245" width="15" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="sid-4DC479E5-5C20-4948-BCFC-9EC5E2F66D8D_gui" bpmnElement="sid-4DC479E5-5C20-4948-BCFC-9EC5E2F66D8D">
-        <omgdi:waypoint x="395" y="270" />
-        <omgdi:waypoint x="463" y="270" />
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="314" y="185" width="90" height="20" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-337A23B9-A923-4CCE-B613-3E247B773CCE_gui" bpmnElement="sid-337A23B9-A923-4CCE-B613-3E247B773CCE">
         <omgdi:waypoint x="681" y="294" />
         <omgdi:waypoint x="680.5" y="359" />
@@ -133,12 +94,41 @@
           <omgdc:Bounds x="657" y="296" width="18" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="sid-52EB1772-F36E-433E-8F5B-D5DFD26E6F26_gui" bpmnElement="sid-52EB1772-F36E-433E-8F5B-D5DFD26E6F26">
-        <omgdc:Bounds x="463" y="230" width="100" height="80" />
-        <bpmndi:BPMNLabel labelStyle="sid-84cb49fd-2f7c-44fb-8950-83c3fa153d3b">
-          <omgdc:Bounds x="360.5" y="172" width="84" height="12" />
+      <bpmndi:BPMNEdge id="sid-4DC479E5-5C20-4948-BCFC-9EC5E2F66D8D_gui" bpmnElement="sid-4DC479E5-5C20-4948-BCFC-9EC5E2F66D8D">
+        <omgdi:waypoint x="395" y="270" />
+        <omgdi:waypoint x="463" y="270" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="314" y="185" width="90" height="20" />
         </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="sid-8B820AF5-DC5C-4618-B854-E08B71FB55CB_gui" bpmnElement="sid-8B820AF5-DC5C-4618-B854-E08B71FB55CB">
+        <omgdi:waypoint x="705" y="270" />
+        <omgdi:waypoint x="798" y="270" />
+        <bpmndi:BPMNLabel labelStyle="sid-e0502d32-f8d1-41cf-9c4a-cbb49fecf581">
+          <omgdc:Bounds x="713" y="245" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="sid-57EB1F24-BD94-479A-BF1F-57F1EAA19C6C_gui" bpmnElement="sid-57EB1F24-BD94-479A-BF1F-57F1EAA19C6C">
+        <omgdi:waypoint x="898" y="270" />
+        <omgdi:waypoint x="971" y="270" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="820" y="185" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="sid-EE8A7BA0-5D66-4F8B-80E3-CC2751B3856A_gui" bpmnElement="sid-EE8A7BA0-5D66-4F8B-80E3-CC2751B3856A">
+        <omgdi:waypoint x="563" y="270" />
+        <omgdi:waypoint x="655" y="270" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="494" y="185" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="sid-7B791A11-2F2E-4D80-AFB3-91A02CF2B4FD_gui" bpmnElement="sid-7B791A11-2F2E-4D80-AFB3-91A02CF2B4FD">
+        <omgdi:waypoint x="293" y="270" />
+        <omgdi:waypoint x="345" y="270" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="204" y="185" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="sid-E49425CF-8287-4798-B622-D2A7D78EF00B_gui" bpmnElement="sid-E49425CF-8287-4798-B622-D2A7D78EF00B">
         <omgdc:Bounds x="798" y="230" width="100" height="80" />
         <bpmndi:BPMNLabel labelStyle="sid-84cb49fd-2f7c-44fb-8950-83c3fa153d3b">
@@ -175,6 +165,15 @@
       <bpmndi:BPMNShape id="DataStoreReference_07122vx_di" bpmnElement="DataStoreReference_07122vx">
         <omgdc:Bounds x="595" y="415" width="50" height="50" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1b3aco1_di" bpmnElement="TextAnnotation_1b3aco1">
+        <omgdc:Bounds x="900" y="150" width="100" height="30" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0gi0jc4_di" bpmnElement="TextAnnotation_0gi0jc4">
+        <omgdc:Bounds x="570" y="150" width="100" height="30" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0g96ts2_di" bpmnElement="sid-52EB1772-F36E-433E-8F5B-D5DFD26E6F26">
+        <omgdc:Bounds x="463" y="230" width="100" height="80" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Association_08yj3j4_di" bpmnElement="Association_08yj3j4">
         <omgdi:waypoint x="887" y="230" />
         <omgdi:waypoint x="935" y="180" />
@@ -183,21 +182,28 @@
         <omgdi:waypoint x="554" y="230" />
         <omgdi:waypoint x="605" y="180" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Participant_1qqmii9_di" bpmnElement="Participant_03l0jtk" isHorizontal="true">
+        <omgdc:Bounds x="153" y="520" width="600" height="60" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="DataOutputAssociation_0sh730x_di" bpmnElement="DataOutputAssociation_0sh730x">
         <omgdi:waypoint x="538" y="310" />
         <omgdi:waypoint x="604" y="415" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataInputAssociation_0w51id0_di" bpmnElement="DataInputAssociation_0w51id0">
-        <omgdi:waypoint x="645" y="425" />
-        <omgdi:waypoint x="832" y="310" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_1srw0p9_di" bpmnElement="DataOutputAssociation_1srw0p9">
         <omgdi:waypoint x="563" y="287" />
         <omgdi:waypoint x="852" y="388" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0w51id0_di" bpmnElement="DataInputAssociation_0w51id0">
+        <omgdi:waypoint x="645" y="425" />
+        <omgdi:waypoint x="832" y="310" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_1tmiiaa_di" bpmnElement="DataInputAssociation_1tmiiaa">
         <omgdi:waypoint x="872" y="365" />
         <omgdi:waypoint x="877" y="310" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1hdt5ui_di" bpmnElement="Flow_1hdt5ui">
+        <omgdi:waypoint x="513" y="310" />
+        <omgdi:waypoint x="513" y="520" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
     <bpmndi:BPMNLabelStyle id="sid-e0502d32-f8d1-41cf-9c4a-cbb49fecf581">
