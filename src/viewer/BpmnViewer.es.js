@@ -11,6 +11,7 @@ const BpmnViewer = ({ fileData, setFileData }) => {
     const [allAnnotations, setAllAnnotations] = useState(null);
     const [allDataObjects, setAllDataObjects] = useState(null);
     const [allDataStores, setAllDataStores] = useState(null);
+    const [allMessageFlows, setAllMessageFlows] = useState(null);
 
     useEffect(() => {
         setupModeler();
@@ -30,6 +31,7 @@ const BpmnViewer = ({ fileData, setFileData }) => {
             setAllAnnotations(selectElements("TextAnnotation"));
             setAllDataObjects(selectElements("DataObjectReference"));
             setAllDataStores(selectElements("DataStoreReference"));
+            setAllMessageFlows(selectElements("MessageFlow"));
             viewer.get("canvas").zoom("fit-viewport");
         });
     };
@@ -85,7 +87,9 @@ const BpmnViewer = ({ fileData, setFileData }) => {
      */
     const addConnectionArray = (connectionArray) => {
         connectionArray.forEach((con, index) => {
-            canvas.addConnection(con);
+            if (!elementRegistry.get(con.id)) {
+                canvas.addConnection(con);
+            }
         });
     };
 
@@ -120,9 +124,12 @@ const BpmnViewer = ({ fileData, setFileData }) => {
                 setFileData={setFileData}
                 addElements={addElements}
                 removeElements={removeElements}
+                removeConnectionArray={removeConnectionArray}
+                addConnectionArray={addConnectionArray}
                 allAnnotations={allAnnotations}
                 allDataObjects={allDataObjects}
                 allDataStores={allDataStores}
+                allMessageFlows={allMessageFlows}
             />
         </>
     );
