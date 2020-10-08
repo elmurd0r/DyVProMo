@@ -14,7 +14,9 @@ const ToggleSwitch = ({ showIt, showShapeOrCon, label }) => {
                     }}
                 />
                 <label
-                    className="form-check-label"
+                    className={`form-check-label ${
+                        !showIt && "bdv-color-grey"
+                    }`}
                     htmlFor="flexSwitchCheckDefault"
                 >
                     {label}

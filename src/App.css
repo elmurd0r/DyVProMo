@@ -47,14 +47,19 @@ body,
     left: 10px;
 }
 
+.bdv-info-bar {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+}
+
 .bdv-toolbar-ctrl {
     background: #fafafa;
     border-radius: 0.75rem;
     border: solid 1px #e0e0e0;
-
 }
 .bdv-toolbar-ctrl:hover {
-    box-shadow: 0 0 11px rgba(33,33,33,.2);
+    box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
 }
 
 .bdv-toolbar-slider {
@@ -69,9 +74,21 @@ body,
     height: 44%;
 }
 
+.bdv-br {
+    border-radius: 0.75rem !important;
+}
+
+.bdv-font-small {
+    font-size: small;
+}
+
 .bdv-close-btn {
     position: fixed;
     top: 10px;
     right: 10px;
     font-size: x-large;
+}
+
+.bdv-color-grey {
+    color: #6c757d;
 }

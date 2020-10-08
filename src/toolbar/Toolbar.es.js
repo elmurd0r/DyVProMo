@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import CloseButton from "./CloseButton.es";
 import CheckboxBar from "./checkboxbar/CheckboxBar.es";
 import DetailSlider from "./DetailSlider.es";
+import InfoBar from "./InfoBar.es";
 
 const Toolbar = ({
     setFileData,
@@ -14,7 +15,7 @@ const Toolbar = ({
     allDataStores,
     allMessageFlows,
 }) => {
-    const [detailLevel, setDetailLevel] = useState(2);
+    const [detailLevel, setDetailLevel] = useState("2");
     const [showAnnotations, setShowAnnotations] = useState(true);
     const [showDataObjects, setshowDataObjects] = useState(true);
     const [showDataStores, setShowDataStores] = useState(true);
@@ -122,6 +123,7 @@ const Toolbar = ({
                 changeDataStores={changeDataStores}
                 changeMessageFlow={changeMessageFlow}
             />
+            <InfoBar detailLevel={detailLevel} />
             <DetailSlider
                 detailLevel={detailLevel}
                 changeDetailLevel={changeDetailLevel}
