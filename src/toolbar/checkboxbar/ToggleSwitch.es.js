@@ -5,19 +5,19 @@ const ToggleSwitch = ({ showIt, showShapeOrCon, label }) => {
         <>
             <div className="form-check form-switch">
                 <input
-                    className="form-check-input"
+                    className="form-check-input bdv-pointer"
                     type="checkbox"
-                    id="flexSwitchCheckDefault"
+                    id={`flexSwitch-${label}`}
                     checked={showIt}
                     onChange={(e) => {
                         showShapeOrCon(e.target.checked);
                     }}
                 />
                 <label
-                    className={`form-check-label ${
+                    className={`form-check-label bdv-pointer ${
                         !showIt && "bdv-color-grey"
                     }`}
-                    htmlFor="flexSwitchCheckDefault"
+                    htmlFor={`flexSwitch-${label}`}
                 >
                     {label}
                 </label>

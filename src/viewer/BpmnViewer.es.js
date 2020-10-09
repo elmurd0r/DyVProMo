@@ -2,11 +2,15 @@ import React, { useEffect, useState } from "react";
 import NavigatedViewer from "bpmn-js/lib/NavigatedViewer";
 import { is } from "bpmn-js/lib/util/ModelUtil";
 import Toolbar from "../toolbar/Toolbar.es";
+import BdvUtil from "../util/BdvUtil";
 
 const BpmnViewer = ({ fileData, setFileData }) => {
     let viewer;
     const [canvas, setCanvas] = useState(null);
+    const [overlays, setOverlays] = useState(null);
     const [elementRegistry, setElementRegistry] = useState(null);
+
+    const [presentFirstElements, setPresentFirstElements] = useState([]);
 
     const [allAnnotations, setAllAnnotations] = useState(null);
     const [allDataObjects, setAllDataObjects] = useState(null);
@@ -18,21 +22,23 @@ const BpmnViewer = ({ fileData, setFileData }) => {
     }, []);
 
     const setupModeler = () => {
-        //viewer = new Viewer({container: '#canvas'});
         viewer = new NavigatedViewer({ container: "#canvas" });
-
         importXML(fileData);
     };
 
     const importXML = (fileData) => {
         viewer.importXML(fileData).then(() => {
             setCanvas(viewer.get("canvas"));
+            setOverlays(viewer.get("overlays"));
             setElementRegistry(viewer.get("elementRegistry"));
+
+            setPresentFirstElements(selectAllFirstElems());
             setAllAnnotations(selectElements("TextAnnotation"));
             setAllDataObjects(selectElements("DataObjectReference"));
             setAllDataStores(selectElements("DataStoreReference"));
             setAllMessageFlows(selectElements("MessageFlow"));
-            viewer.get("canvas").zoom("fit-viewport");
+            //Center and zoom to display whole bpmn model
+            viewer.get("canvas").zoom("fit-viewport", 'auto');
         });
     };
 
@@ -117,6 +123,61 @@ const BpmnViewer = ({ fileData, setFileData }) => {
         });
     };
 
+    /**
+     * select all elements that appear for the first time
+     * regardless of whether being a shape or connection
+     * @returns array filled with model elements
+     */
+    const selectAllFirstElems = () => {
+        let a = viewer.get("elementRegistry").filter((element) => element.type.startsWith("bpmn:"));
+        let b = [];
+        a.forEach((element) => {
+            let alreadyAdded = false;
+            b.forEach((elem) => {
+                if(elem.type === element.type) {
+                    alreadyAdded = true;
+                }
+            });
+            if(!alreadyAdded && element.type !== "bpmn:Collaboration" ) {
+                b.push(element);
+            }
+        })
+        return b;
+    }
+
+    /**
+     * add overlay for every given element and
+     * position it based on its type
+     * @param element array filled with all first appear elems
+     * @param content is a String that is inside the overlay
+     * @returns {String} elementID if you want to use it
+     */
+    const addOverlay = (element, content) => {
+        console.log(element);
+        let position = BdvUtil.getPosition(element, content);
+        let html = '<div class="diagram-note p-1">'+content+'<div/>';
+        return overlays.add(element, {position: position, html: html});
+    };
+
+    /**
+     * removes all overlays
+     */
+    const removeOverlays = () => {
+        overlays.clear();
+    }
+
+    /**
+     * iterates over given elements array and call
+     * the addOverlay method with its type name
+     * @param elements array
+     */
+    const addOverlays = (elements) => {
+        elements.forEach((elem) => {
+            let content = elem.type.split(':')[1] === "Participant" ? 'Pool' : elem.type.split(':')[1];
+            addOverlay(elem, content);
+        })
+    }
+
     return (
         <>
             <div id="canvas" />
@@ -126,6 +187,9 @@ const BpmnViewer = ({ fileData, setFileData }) => {
                 removeElements={removeElements}
                 removeConnectionArray={removeConnectionArray}
                 addConnectionArray={addConnectionArray}
+                addOverlays={addOverlays}
+                removeOverlays={removeOverlays}
+                presentFirstElements={presentFirstElements}
                 allAnnotations={allAnnotations}
                 allDataObjects={allDataObjects}
                 allDataStores={allDataStores}

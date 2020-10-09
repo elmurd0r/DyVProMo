@@ -6,10 +6,12 @@ const CheckboxBar = ({
     showDataObjects,
     showDataStores,
     showMessageFlows,
+    showOverlay,
     changeAnnotations,
     changeDataObjects,
     changeDataStores,
     changeMessageFlow,
+    changeOverlay
 }) => {
     return (
         <div className="bdv-checkbox-bar bdv-toolbar-ctrl p-2">
@@ -32,6 +34,11 @@ const CheckboxBar = ({
                 showIt={showMessageFlows}
                 showShapeOrCon={changeMessageFlow}
                 label="Message Flows"
+            />
+            <ToggleSwitch
+                showIt={showOverlay}
+                showShapeOrCon={changeOverlay}
+                label={"Explanation"}
             />
         </div>
     );

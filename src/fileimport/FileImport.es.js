@@ -6,7 +6,6 @@ const FileImport = ({ setFileData }) => {
     const [showAlert, setShowAlert] = useState(false);
 
     const onDrop = useCallback((acceptedFiles) => {
-        // Do something with the files
         acceptedFiles.forEach((file) => {
             console.log(file);
             const reader = new FileReader();
@@ -14,9 +13,7 @@ const FileImport = ({ setFileData }) => {
             reader.onabort = () => console.log("file reading was aborted");
             reader.onerror = () => console.log("file reading has failed");
             reader.onload = () => {
-                // Do whatever you want with the file contents
                 console.log(reader);
-
                 if (file.name.split(".").pop().toLowerCase() === "bpmn") {
                     setFileData(reader.result);
                 } else {

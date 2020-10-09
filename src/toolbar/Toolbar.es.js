@@ -10,6 +10,9 @@ const Toolbar = ({
     removeElements,
     addConnectionArray,
     removeConnectionArray,
+    addOverlays,
+    removeOverlays,
+    presentFirstElements,
     allAnnotations,
     allDataObjects,
     allDataStores,
@@ -20,6 +23,7 @@ const Toolbar = ({
     const [showDataObjects, setshowDataObjects] = useState(true);
     const [showDataStores, setShowDataStores] = useState(true);
     const [showMessageFlows, setShowMessageFlows] = useState(true);
+    const [showOverlay, setShowOverlay] = useState(false);
 
     const changeDetailLevel = (level) => {
         setDetailLevel(level);
@@ -28,23 +32,25 @@ const Toolbar = ({
                 changeAnnotations(false);
                 changeDataObjects(false);
                 changeDataStores(false);
+                changeOverlay(false);
                 break;
             case "1":
                 changeAnnotations(false);
                 changeDataObjects(true);
                 changeDataStores(true);
+                changeOverlay(false);
                 break;
             case "2":
                 changeAnnotations(true);
                 changeDataObjects(true);
                 changeDataStores(true);
+                changeOverlay(false);
                 break;
             case "3":
                 changeAnnotations(true);
                 changeDataObjects(true);
                 changeDataStores(true);
-                console.log("TODO: Overlay");
-                //TODO: Overlay
+                changeOverlay(true);
                 break;
             default:
                 changeAnnotations(true);
@@ -71,6 +77,17 @@ const Toolbar = ({
     };
     const changeDataStores = (showIt) => {
         changeShape(allDataStores, showDataStores, setShowDataStores, showIt);
+    };
+
+    const changeOverlay = (showIt) => {
+        if(showIt !== showOverlay) {
+            if(showIt) {
+                addOverlays(presentFirstElements);
+            } else {
+                removeOverlays();
+            }
+            setShowOverlay(showIt);
+        }
     };
 
     const changeShape = (
@@ -118,10 +135,12 @@ const Toolbar = ({
                 showDataObjects={showDataObjects}
                 showDataStores={showDataStores}
                 showMessageFlows={showMessageFlows}
+                showOverlay={showOverlay}
                 changeAnnotations={changeAnnotations}
                 changeDataObjects={changeDataObjects}
                 changeDataStores={changeDataStores}
                 changeMessageFlow={changeMessageFlow}
+                changeOverlay={changeOverlay}
             />
             <InfoBar detailLevel={detailLevel} />
             <DetailSlider
