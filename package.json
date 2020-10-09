@@ -5,7 +5,7 @@
     "dependencies": {
         "axios": "^0.20.0",
         "bootstrap": "^5.0.0-alpha2",
-        "bpmn-js": "^7.3.0",
+        "bpmn-js": "^7.3.1",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
         "react-dropzone": "^11.2.0",
