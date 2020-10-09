@@ -92,3 +92,10 @@ body,
 .bdv-color-grey {
     color: #6c757d;
 }
+
+.diagram-note {
+    background-color: rgba(66, 180, 21, 0.7);
+    color: White;
+    font-size: 10px;
+    text-align: center;
+}
