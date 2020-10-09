@@ -94,7 +94,12 @@ const BpmnViewer = ({ fileData, setFileData }) => {
     const addConnectionArray = (connectionArray) => {
         connectionArray.forEach((con, index) => {
             if (!elementRegistry.get(con.id)) {
-                canvas.addConnection(con);
+                if(con.type === "label") {
+                    console.log(con);
+                    canvas.addShape(con);
+                } else {
+                    canvas.addConnection(con);
+                }
             }
         });
     };
