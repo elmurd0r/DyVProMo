@@ -38,7 +38,7 @@ const BpmnViewer = ({ fileData, setFileData }) => {
             setAllDataStores(selectElements("DataStoreReference"));
             setAllMessageFlows(selectElements("MessageFlow"));
             //Center and zoom to display whole bpmn model
-            viewer.get("canvas").zoom("fit-viewport", 'auto');
+            viewer.get("canvas").zoom("fit-viewport", "auto");
         });
     };
 
@@ -129,21 +129,23 @@ const BpmnViewer = ({ fileData, setFileData }) => {
      * @returns array filled with model elements
      */
     const selectAllFirstElems = () => {
-        let a = viewer.get("elementRegistry").filter((element) => element.type.startsWith("bpmn:"));
+        let a = viewer
+            .get("elementRegistry")
+            .filter((element) => element.type.startsWith("bpmn:"));
         let b = [];
         a.forEach((element) => {
             let alreadyAdded = false;
             b.forEach((elem) => {
-                if(elem.type === element.type) {
+                if (elem.type === element.type) {
                     alreadyAdded = true;
                 }
             });
-            if(!alreadyAdded && element.type !== "bpmn:Collaboration" ) {
+            if (!alreadyAdded && element.type !== "bpmn:Collaboration") {
                 b.push(element);
             }
-        })
+        });
         return b;
-    }
+    };
 
     /**
      * add overlay for every given element and
@@ -155,8 +157,8 @@ const BpmnViewer = ({ fileData, setFileData }) => {
     const addOverlay = (element, content) => {
         console.log(element);
         let position = BdvUtil.getPosition(element, content);
-        let html = '<div class="diagram-note p-1">'+content+'<div/>';
-        return overlays.add(element, {position: position, html: html});
+        let html = '<div class="diagram-note p-1">' + content + "<div/>";
+        return overlays.add(element, { position: position, html: html });
     };
 
     /**
@@ -164,7 +166,7 @@ const BpmnViewer = ({ fileData, setFileData }) => {
      */
     const removeOverlays = () => {
         overlays.clear();
-    }
+    };
 
     /**
      * iterates over given elements array and call
@@ -173,10 +175,13 @@ const BpmnViewer = ({ fileData, setFileData }) => {
      */
     const addOverlays = (elements) => {
         elements.forEach((elem) => {
-            let content = elem.type.split(':')[1] === "Participant" ? 'Pool' : elem.type.split(':')[1];
+            let content =
+                elem.type.split(":")[1] === "Participant"
+                    ? "Pool"
+                    : elem.type.split(":")[1];
             addOverlay(elem, content);
-        })
-    }
+        });
+    };
 
     return (
         <>

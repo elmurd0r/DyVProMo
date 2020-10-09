@@ -11,7 +11,7 @@ const CheckboxBar = ({
     changeDataObjects,
     changeDataStores,
     changeMessageFlow,
-    changeOverlay
+    changeOverlay,
 }) => {
     return (
         <div className="bdv-checkbox-bar bdv-toolbar-ctrl p-2">

@@ -80,8 +80,8 @@ const Toolbar = ({
     };
 
     const changeOverlay = (showIt) => {
-        if(showIt !== showOverlay) {
-            if(showIt) {
+        if (showIt !== showOverlay) {
+            if (showIt) {
                 addOverlays(presentFirstElements);
             } else {
                 removeOverlays();
