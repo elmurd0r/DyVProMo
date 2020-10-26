@@ -66,6 +66,10 @@
         <targetRef>Property_0moucem</targetRef>
       </dataInputAssociation>
     </receiveTask>
+    <textAnnotation id="TextAnnotation_1b3aco1">
+      <text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam.</text>
+    </textAnnotation>
+    <association id="Association_08yj3j4" sourceRef="sid-E49425CF-8287-4798-B622-D2A7D78EF00B" targetRef="TextAnnotation_1b3aco1" />
     <textAnnotation id="TextAnnotation_0gi0jc4">
       <text>- wort wort
 - greeting
@@ -73,10 +77,6 @@
 - long</text>
     </textAnnotation>
     <association id="Association_1fnl5lv" sourceRef="sid-52EB1772-F36E-433E-8F5B-D5DFD26E6F26" targetRef="TextAnnotation_0gi0jc4" />
-    <textAnnotation id="TextAnnotation_1b3aco1">
-      <text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam.</text>
-    </textAnnotation>
-    <association id="Association_08yj3j4" sourceRef="sid-E49425CF-8287-4798-B622-D2A7D78EF00B" targetRef="TextAnnotation_1b3aco1" />
   </process>
   <bpmndi:BPMNDiagram id="sid-74620812-92c4-44e5-949c-aa47393d3830">
     <bpmndi:BPMNPlane id="sid-cdcae759-2af7-4a6d-bd02-53f3352a731d" bpmnElement="sid-c0e745ff-361e-4afb-8c8d-2a1fc32b1424">
@@ -89,8 +89,8 @@
       <bpmndi:BPMNShape id="sid-57E4FE0D-18E4-478D-BC5D-B15164E93254_gui" bpmnElement="sid-57E4FE0D-18E4-478D-BC5D-B15164E93254" isHorizontal="true">
         <omgdc:Bounds x="183" y="80" width="1137" height="464" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="TextAnnotation_1b3aco1_di" bpmnElement="TextAnnotation_1b3aco1">
-        <omgdc:Bounds x="1030" y="90" width="100" height="82" />
+      <bpmndi:BPMNShape id="TextAnnotation_0gi0jc4_di" bpmnElement="TextAnnotation_0gi0jc4">
+        <omgdc:Bounds x="600" y="97" width="100" height="68" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="sid-337A23B9-A923-4CCE-B613-3E247B773CCE_gui" bpmnElement="sid-337A23B9-A923-4CCE-B613-3E247B773CCE">
         <omgdi:waypoint x="681" y="294" />
@@ -172,16 +172,16 @@
       <bpmndi:BPMNShape id="Activity_16jha6c_di" bpmnElement="sid-E49425CF-8287-4798-B622-D2A7D78EF00B">
         <omgdc:Bounds x="798" y="230" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="TextAnnotation_0gi0jc4_di" bpmnElement="TextAnnotation_0gi0jc4">
-        <omgdc:Bounds x="580" y="140" width="100" height="68" />
+      <bpmndi:BPMNShape id="TextAnnotation_1b3aco1_di" bpmnElement="TextAnnotation_1b3aco1">
+        <omgdc:Bounds x="1030" y="90" width="100" height="82" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Association_1fnl5lv_di" bpmnElement="Association_1fnl5lv">
-        <omgdi:waypoint x="554" y="230" />
-        <omgdi:waypoint x="580" y="204" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Association_08yj3j4_di" bpmnElement="Association_08yj3j4">
         <omgdi:waypoint x="897" y="236" />
         <omgdi:waypoint x="1030" y="139" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1fnl5lv_di" bpmnElement="Association_1fnl5lv">
+        <omgdi:waypoint x="548" y="230" />
+        <omgdi:waypoint x="604" y="165" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Participant_1qqmii9_di" bpmnElement="Participant_03l0jtk" isHorizontal="true">
         <omgdc:Bounds x="153" y="680" width="757" height="60" />
