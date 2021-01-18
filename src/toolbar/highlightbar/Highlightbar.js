@@ -11,6 +11,7 @@ const Highlightbar = ({
 }) => {
     return (
         <div className="bdv-highlight-bar bdv-toolbar-ctrl p-2">
+            <h5 className="text-center">Highlighter</h5>
             {allPools.length > 0 ? (
                 <div>
                     <b>Pools</b>
