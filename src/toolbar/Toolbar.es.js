@@ -3,6 +3,7 @@ import CloseButton from "./CloseButton.es";
 import CheckboxBar from "./checkboxbar/CheckboxBar.es";
 import DetailSlider from "./DetailSlider.es";
 import InfoBar from "./InfoBar.es";
+import Highlightbar from "./highlightbar/Highlightbar";
 
 const Toolbar = ({
     setFileData,
@@ -12,6 +13,10 @@ const Toolbar = ({
     removeConnectionArray,
     addOverlays,
     removeOverlays,
+    highlightElement,
+    removeHighlightElement,
+    allPools,
+    allLanes,
     presentFirstElements,
     allAnnotations,
     allDataObjects,
@@ -24,6 +29,7 @@ const Toolbar = ({
     const [showDataStores, setShowDataStores] = useState(true);
     const [showMessageFlows, setShowMessageFlows] = useState(true);
     const [showOverlay, setShowOverlay] = useState(false);
+    const [highlightedElements, setHighlightedElements] = useState([]);
 
     const changeDetailLevel = (level) => {
         setDetailLevel(level);
@@ -142,6 +148,16 @@ const Toolbar = ({
                 changeMessageFlow={changeMessageFlow}
                 changeOverlay={changeOverlay}
             />
+            {(allPools.length > 0 || allLanes.length > 0) && (
+                <Highlightbar
+                    allPools={allPools}
+                    allLanes={allLanes}
+                    highlightedElements={highlightedElements}
+                    setHighlightedElements={setHighlightedElements}
+                    highlightElement={highlightElement}
+                    removeHighlightElement={removeHighlightElement}
+                />
+            )}
             <InfoBar detailLevel={detailLevel} />
             <DetailSlider
                 detailLevel={detailLevel}
