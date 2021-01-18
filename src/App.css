@@ -94,7 +94,7 @@ body,
 }
 
 .diagram-note {
-    background-color: rgba(66, 180, 21, 0.7);
+    background-color: rgba(13, 110, 253, 0.9);
     color: White;
     font-size: 10px;
     text-align: center;
@@ -102,4 +102,10 @@ body,
 
 .bdv-pointer {
     cursor: pointer;
+}
+
+.bdv-highlight-bar {
+    position: fixed;
+    top: 60px;
+    right: 10px;
 }
