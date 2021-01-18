@@ -9,9 +9,12 @@ const BpmnViewer = ({ fileData, setFileData }) => {
     const [canvas, setCanvas] = useState(null);
     const [overlays, setOverlays] = useState(null);
     const [elementRegistry, setElementRegistry] = useState(null);
+    const [graphicsFactory, setGraphicsFactory] = useState(null);
 
     const [presentFirstElements, setPresentFirstElements] = useState([]);
 
+    const [allPools, setAllPools] = useState([]);
+    const [allLanes, setAllLanes] = useState([]);
     const [allAnnotations, setAllAnnotations] = useState(null);
     const [allDataObjects, setAllDataObjects] = useState(null);
     const [allDataStores, setAllDataStores] = useState(null);
@@ -31,8 +34,11 @@ const BpmnViewer = ({ fileData, setFileData }) => {
             setCanvas(viewer.get("canvas"));
             setOverlays(viewer.get("overlays"));
             setElementRegistry(viewer.get("elementRegistry"));
+            setGraphicsFactory(viewer.get("graphicsFactory"));
 
             setPresentFirstElements(selectAllFirstElems());
+            setAllPools(selectElements("Participant"));
+            setAllLanes(selectElements("Lane"));
             setAllAnnotations(selectElements("TextAnnotation"));
             setAllDataObjects(selectElements("DataObjectReference"));
             setAllDataStores(selectElements("DataStoreReference"));
@@ -94,7 +100,7 @@ const BpmnViewer = ({ fileData, setFileData }) => {
     const addConnectionArray = (connectionArray) => {
         connectionArray.forEach((con, index) => {
             if (!elementRegistry.get(con.id)) {
-                if(con.type === "label") {
+                if (con.type === "label") {
                     console.log(con);
                     canvas.addShape(con);
                 } else {
@@ -188,6 +194,30 @@ const BpmnViewer = ({ fileData, setFileData }) => {
         });
     };
 
+    /**
+     * highlights the given element
+     * fills the pool or lane with green color
+     * @param elem is either pool or lane
+     */
+    const highlightElement = (elem) => {
+        elem.businessObject.di.set("fill", "rgba(0, 80, 0, 1)");
+        const gfx = elementRegistry.getGraphics(elem);
+        const type = elem.waypoints ? "connection" : "shape";
+        graphicsFactory.update(type, elem, gfx);
+    };
+
+    /**
+     * removes the highlight of the given element
+     * fills the pool or lane with white color
+     * @param elem is either pool or lane
+     */
+    const removeHighlightElement = (elem) => {
+        elem.businessObject.di.set("fill", "rgba(255, 255, 255, 1)");
+        const gfx = elementRegistry.getGraphics(elem);
+        const type = elem.waypoints ? "connection" : "shape";
+        graphicsFactory.update(type, elem, gfx);
+    };
+
     return (
         <>
             <div id="canvas" />
@@ -199,6 +229,10 @@ const BpmnViewer = ({ fileData, setFileData }) => {
                 addConnectionArray={addConnectionArray}
                 addOverlays={addOverlays}
                 removeOverlays={removeOverlays}
+                highlightElement={highlightElement}
+                removeHighlightElement={removeHighlightElement}
+                allPools={allPools}
+                allLanes={allLanes}
                 presentFirstElements={presentFirstElements}
                 allAnnotations={allAnnotations}
                 allDataObjects={allDataObjects}
