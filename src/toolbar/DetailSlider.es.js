@@ -1,9 +1,19 @@
 import React from "react";
 
 const DetailSlider = ({ detailLevel, changeDetailLevel }) => {
+
+    const setBubble = () => {
+        const val = detailLevel;
+        const min = 0;
+        const max = 3;
+        const newVal = Number(((val - min) * 100) / (max - min));
+        return `calc(${newVal}% + (${16 - newVal * 0.31}px))`;
+    }
+    let left = setBubble();
+
     return (
-        <div className="bdv-toolbar-ctrl bdv-toolbar-slider pl-2 pr-2 w-25">
-            <label htmlFor="detailRange" className="form-label m-0">
+        <div className="bdv-toolbar-ctrl bdv-toolbar-slider px-2 w-25">
+            <label htmlFor="detailRange" className="form-label m-0 mt-1">
                 Detail Level
             </label>
             <input
@@ -17,6 +27,7 @@ const DetailSlider = ({ detailLevel, changeDetailLevel }) => {
                     changeDetailLevel(e.target.value);
                 }}
             />
+            <div className="bdv-range-value" style={{left: left, display:"none"}}>{detailLevel}</div>
         </div>
     );
 };
