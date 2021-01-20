@@ -10,7 +10,7 @@ const Highlightbar = ({
     removeHighlightElement,
 }) => {
     return (
-        <div className="bdv-highlight-bar bdv-toolbar-ctrl p-2">
+        <div className="bdv-highlight-bar bdv-toolbar-ctrl p-2 overflow-auto">
             <h5 className="text-center">Highlighter</h5>
             {allPools.length > 0 ? (
                 <div>
