@@ -108,4 +108,16 @@ body,
     position: fixed;
     top: 60px;
     right: 10px;
+    max-height: 80vh;
+}
+
+#detailRange:active + .bdv-range-value {
+    display: block!important;
+    color: white;
+    padding: 5px 10px;
+    width: 28px;
+    position: absolute;
+    transform: translate(-50%, -200%);
+    background-color: rgba(13, 110, 253, 1);
+    border-radius: 30px;
 }
