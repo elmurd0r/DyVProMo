@@ -4,8 +4,10 @@ import FileImportAlert from "./FileImportAlert.es";
 
 const FileImport = ({ setFileData }) => {
     const [showAlert, setShowAlert] = useState(false);
+    const [showLoading, setShowLoading] = useState(false);
 
     const onDrop = useCallback((acceptedFiles) => {
+        setShowLoading(true);
         acceptedFiles.forEach((file) => {
             console.log(file);
             const reader = new FileReader();
@@ -13,6 +15,7 @@ const FileImport = ({ setFileData }) => {
             reader.onabort = () => console.log("file reading was aborted");
             reader.onerror = () => console.log("file reading has failed");
             reader.onload = () => {
+                setShowLoading(false);
                 console.log(reader);
                 if (file.name.split(".").pop().toLowerCase() === "bpmn") {
                     setFileData(reader.result);
@@ -38,32 +41,39 @@ const FileImport = ({ setFileData }) => {
     return (
         <div className="row justify-content-md-center bdv-h-44">
             <div className="col-3" />
-            <div className="col-6 p-0 text-center">
-                <div
-                    {...getRootProps()}
-                    className={`bdv-dropzone ${
-                        isDragActive
-                            ? isDragAccept
-                                ? "bdv-dropzone-draged"
-                                : "bdv-dropzone-reject"
-                            : ""
-                    }`}
-                >
-                    <input {...getInputProps()} />
-                    {isDragActive ? (
-                        isDragAccept ? (
-                            <span>Drop the file here ...</span>
-                        ) : (
-                            <span>Too many files ...</span>
-                        )
-                    ) : (
-                        <span>
+            {showLoading ? (
+                <div className="col-6 p-0 text-center">
+                    <div className="spinner-border" role="status"/>
+                </div>
+            ) :
+                (
+                    <div className="col-6 p-0 text-center">
+                        <div
+                            {...getRootProps()}
+                            className={`bdv-dropzone ${
+                                isDragActive
+                                    ? isDragAccept
+                                    ? "bdv-dropzone-draged"
+                                    : "bdv-dropzone-reject"
+                                    : ""
+                            }`}
+                        >
+                            <input {...getInputProps()} />
+                            {isDragActive ? (
+                                isDragAccept ? (
+                                    <span>Drop the file here ...</span>
+                                ) : (
+                                    <span>Too many files ...</span>
+                                )
+                            ) : (
+                                <span>
                             Drag 'n' Drop BPMN file here, or click to select
                             file
                         </span>
-                    )}
-                </div>
-            </div>
+                            )}
+                        </div>
+                    </div>
+                )}
             <div className="col-3" />
             {showAlert && <FileImportAlert setShowAlert={setShowAlert} />}
             <div className="col-12 text-center align-self-end">
