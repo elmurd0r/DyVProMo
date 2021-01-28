@@ -7,8 +7,8 @@ const FileImport = ({ setFileData }) => {
     const [showLoading, setShowLoading] = useState(false);
 
     const onDrop = useCallback((acceptedFiles) => {
-        setShowLoading(true);
         acceptedFiles.forEach((file) => {
+            setShowLoading(true);
             console.log(file);
             const reader = new FileReader();
 
