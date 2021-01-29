@@ -111,6 +111,12 @@ body,
     max-height: 80vh;
 }
 
+.bdv-reset-btn {
+    position: fixed;
+    bottom: 60px;
+    right: 10px;
+}
+
 #detailRange:active + .bdv-range-value {
     display: block!important;
     color: white;
