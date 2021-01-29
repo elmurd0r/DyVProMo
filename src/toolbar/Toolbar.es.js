@@ -4,6 +4,7 @@ import CheckboxBar from "./checkboxbar/CheckboxBar.es";
 import DetailSlider from "./DetailSlider.es";
 import InfoBar from "./InfoBar.es";
 import Highlightbar from "./highlightbar/Highlightbar";
+import ResetButton from "./ResetButton.es";
 
 const Toolbar = ({
     setFileData,
@@ -15,6 +16,7 @@ const Toolbar = ({
     removeOverlays,
     highlightElement,
     removeHighlightElement,
+    resetViewport,
     allPools,
     allLanes,
     presentFirstElements,
@@ -163,6 +165,7 @@ const Toolbar = ({
                 detailLevel={detailLevel}
                 changeDetailLevel={changeDetailLevel}
             />
+            <ResetButton resetViewport={resetViewport} />
             <CloseButton setFileData={setFileData} />
         </>
     );
