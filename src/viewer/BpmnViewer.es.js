@@ -218,6 +218,13 @@ const BpmnViewer = ({ fileData, setFileData }) => {
         graphicsFactory.update(type, elem, gfx);
     };
 
+    /**
+     * resets the viewport that the model is centered and fits the screen.
+     */
+    const resetViewport = () => {
+        canvas.zoom("fit-viewport", "auto");
+    }
+
     return (
         <>
             <div id="canvas" />
@@ -231,6 +238,7 @@ const BpmnViewer = ({ fileData, setFileData }) => {
                 removeOverlays={removeOverlays}
                 highlightElement={highlightElement}
                 removeHighlightElement={removeHighlightElement}
+                resetViewport={resetViewport}
                 allPools={allPools}
                 allLanes={allLanes}
                 presentFirstElements={presentFirstElements}
