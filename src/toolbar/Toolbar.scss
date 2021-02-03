@@ -1,0 +1,18 @@
+@import "./src/Colors";
+
+.bdv-toolbar-ctrl {
+  background: #fafafa;
+  border-radius: 0.75rem;
+  border: solid 1px #e0e0e0;
+}
+.bdv-toolbar-ctrl:hover {
+  box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+}
+
+.bdv-color-grey {
+  color: $toggle-grey;
+}
+
+.bdv-pointer {
+  cursor: pointer;
+}

@@ -1,0 +1,20 @@
+@import "./src/Colors";
+
+.bdv-toolbar-slider {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: small;
+}
+
+#detailRange:active + .bdv-range-value {
+  display: block!important;
+  color: white;
+  padding: 5px 10px;
+  width: 28px;
+  position: absolute;
+  transform: translate(-50%, -200%);
+  background-color: $blue;
+  border-radius: 30px;
+}

@@ -1,0 +1,15 @@
+@import "./src/Colors";
+
+.bdv-info-bar {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+}
+
+.bdv-br {
+  border-radius: 0.75rem !important;
+}
+
+.bdv-font-small {
+  font-size: small;
+}
