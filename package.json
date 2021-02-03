@@ -9,7 +9,8 @@
         "react-dom": "^16.13.1",
         "react-dropzone": "^11.2.0",
         "react-icons": "^4.1.0",
-        "react-scripts": "3.4.3"
+        "react-scripts": "3.4.3",
+        "sass": "^1.32.6"
     },
     "scripts": {
         "start": "react-scripts start",
