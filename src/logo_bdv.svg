@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="43px"
+     height="43px" viewBox="-0.5 -0.5 43 43"
+     content="&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2021-02-03T13:20:37.227Z&quot; agent=&quot;5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36&quot; etag=&quot;SrwMo0Cxh4i3CFPiNKsf&quot; version=&quot;14.1.8&quot; type=&quot;device&quot;&gt;&lt;diagram id=&quot;3yBWMCApfZu3KZvNwjxG&quot; name=&quot;Page-1&quot;&gt;tZRNU4MwEIZ/DUdn+LC1V4FWD3pQnOp4y5CUZAxZJk0F+utdJJRG2pn24IXJPtkku++b4EVJ2TxoUvFnoEx6oU8bL0q9MAznC/x2oO1BMA96UGhBLRpBJvbMQt/SnaBs6yQaAGlE5cIclGK5cRjRGmo3bQPSPbUiBZuALCdySt8FNbyns5E+MlFw4+CSDHm2iS0nFOojFC29KNEAph+VTcJkJ9sgSb9udWb2UJNmylyy4O59to9fSJM+fbymdeKnn3VzE/a7fBO5s73aYk07NK9hpyjrNvG9KK65MCyrSN7N1ug2Mm5KiVGAw42QMgEJGmMFCpPirdHwddAt7JJAmRUpheyuw5ppShRBbEth2rDmbI/BQTm8bAxKZnSLKXbB0E/rhvVo2q11gx85NjBir0lx2HeUEwdW0SvUDSbqxul6IjC2a1wVe8n+6HhCWiJFoTDMUR6GPO7EE3hv7+1EKSjtjjlpm2usY8ob4VASSzNb6pBl32cw/xfPFhdZFl5vGYbjY/udO/pZRcsf&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs/>
+    <g>
+        <rect x="1" y="1" width="40" height="40" fill="none" stroke="#000000" stroke-width="2" pointer-events="all"/>
+        <rect x="1" y="11" width="40" height="20" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%"
+                               height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                         style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 38px; height: 1px; padding-top: 21px; margin-left: 2px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
+                            <div style="display: inline-block; font-size: 16px; font-family: Tahoma; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                                BDV
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="21" y="26" fill="#000000" font-family="Tahoma" font-size="16px" text-anchor="middle">BDV</text>
+            </switch>
+        </g>
+    </g>
+    <switch>
+        <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/>
+        <a transform="translate(0,-5)" xlink:href="https://www.diagrams.net/doc/faq/svg-export-text-problems"
+           target="_blank">
+            <text text-anchor="middle" font-size="10px" x="50%" y="100%">Viewer does not support full SVG 1.1</text>
+        </a>
+    </switch>
+</svg>
