@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import "./App.css";
-import BpmnViewer from "./viewer/BpmnViewer.es";
+import "./App.scss";
+import BpmnViewer from "./viewer/BpmnViewer";
 import "bootstrap/dist/css/bootstrap.min.css";
-import FileImport from "./fileimport/FileImport.es";
-import Title from "./Title.es";
+import FileImport from "./fileimport/FileImport";
+import Title from "./Title";
 
 const RootComponent = () => {
     const [fileData, setFileData] = useState(null);

@@ -1,5 +1,6 @@
 import React from "react";
-import ToggleSwitch from "./ToggleSwitch.es";
+import ToggleSwitch from "./ToggleSwitch";
+import "./CheckboxBar.scss";
 
 const CheckboxBar = ({
     showAnnotations,

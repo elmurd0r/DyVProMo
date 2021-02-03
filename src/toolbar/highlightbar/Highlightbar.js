@@ -1,5 +1,6 @@
 import React from "react";
-import HighlightToggle from "./HighlightToggle.es";
+import HighlightToggle from "./HighlightToggle";
+import "./Highlightbar.scss";
 
 const Highlightbar = ({
     allPools,

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import CloseButton from "./CloseButton.es";
-import CheckboxBar from "./checkboxbar/CheckboxBar.es";
-import DetailSlider from "./DetailSlider.es";
-import InfoBar from "./InfoBar.es";
+import CloseButton from "./close/CloseButton";
+import CheckboxBar from "./checkboxbar/CheckboxBar";
+import DetailSlider from "./slider/DetailSlider";
+import InfoBar from "./infobar/InfoBar";
 import Highlightbar from "./highlightbar/Highlightbar";
-import ResetButton from "./ResetButton.es";
+import ResetButton from "./reset/ResetButton";
+import "./Toolbar.scss";
 
 const Toolbar = ({
     setFileData,

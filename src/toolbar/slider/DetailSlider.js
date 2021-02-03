@@ -1,4 +1,5 @@
 import React from "react";
+import "./DetailSlider.scss";
 
 const DetailSlider = ({ detailLevel, changeDetailLevel }) => {
 

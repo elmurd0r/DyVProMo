@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import NavigatedViewer from "bpmn-js/lib/NavigatedViewer";
 import { is } from "bpmn-js/lib/util/ModelUtil";
-import Toolbar from "../toolbar/Toolbar.es";
+import Toolbar from "../toolbar/Toolbar";
 import BdvUtil from "../util/BdvUtil";
+import "./BpmnViewer.scss";
 
 const BpmnViewer = ({ fileData, setFileData }) => {
     let viewer;

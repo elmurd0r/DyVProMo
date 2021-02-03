@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import FileImportAlert from "./FileImportAlert.es";
+import FileImportAlert from "./FileImportAlert";
+import "./FileImport.scss"
 
 const FileImport = ({ setFileData }) => {
     const [showAlert, setShowAlert] = useState(false);

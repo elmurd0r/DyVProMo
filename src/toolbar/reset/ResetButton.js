@@ -1,5 +1,6 @@
 import React from "react";
-import { FiCrosshair } from "react-icons/fi"
+import "./ResetButton.scss";
+import { FiCrosshair } from "react-icons/fi";
 
 const ResetButton = ({ resetViewport }) => {
     return (

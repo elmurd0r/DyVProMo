@@ -1,4 +1,5 @@
 import React from "react";
+import "./CloseButton.scss";
 
 const CloseButton = ({ setFileData }) => {
     return (
