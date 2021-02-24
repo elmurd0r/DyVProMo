@@ -2,6 +2,7 @@ import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import FileImportAlert from "./FileImportAlert";
 import "./FileImport.scss"
+import Viewer from "bpmn-js";
 
 const FileImport = ({ setFileData }) => {
     const [showAlert, setShowAlert] = useState(false);
@@ -19,7 +20,15 @@ const FileImport = ({ setFileData }) => {
                 setShowLoading(false);
                 console.log(reader);
                 if (file.name.split(".").pop().toLowerCase() === "bpmn") {
-                    setFileData(reader.result);
+                    let view = new Viewer();
+                    view.importXML(reader.result)
+                        .then(()=>{
+                            setFileData(reader.result);
+                        },
+                            (onReject)=>{
+                                console.log(onReject);
+                                setShowAlert(true);
+                            });
                 } else {
                     setShowAlert(true);
                 }
