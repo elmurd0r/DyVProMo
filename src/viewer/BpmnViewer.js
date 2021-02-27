@@ -141,22 +141,22 @@ const BpmnViewer = ({ fileData, setFileData }) => {
      * @returns array filled with model elements
      */
     const selectAllFirstElems = () => {
-        let a = viewer
+        let allElements = viewer
             .get("elementRegistry")
             .filter((element) => element.type.startsWith("bpmn:"));
-        let b = [];
-        a.forEach((element) => {
+        let firstElements = [];
+        allElements.forEach((element) => {
             let alreadyAdded = false;
-            b.forEach((elem) => {
+            firstElements.forEach((elem) => {
                 if (elem.type === element.type) {
                     alreadyAdded = true;
                 }
             });
             if (!alreadyAdded && element.type !== "bpmn:Collaboration") {
-                b.push(element);
+                firstElements.push(element);
             }
         });
-        return b;
+        return firstElements;
     };
 
     /**
