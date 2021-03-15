@@ -9,10 +9,18 @@ const Highlightbar = ({
     setHighlightedElements,
     highlightElement,
     removeHighlightElement,
+    setShowHighlighter
 }) => {
     return (
         <div className="bdv-highlight-bar bdv-toolbar-ctrl p-2 overflow-auto">
-            <h5 className="text-center">Highlighter</h5>
+            <div className="row">
+                <div className="col-11">
+                    <h5 className="text-center">Highlighter</h5>
+                </div>
+                {/*<div className="col-1">*/}
+                {/*    <button type="button" className="btn-close" onClick={()=>{setShowHighlighter(false)}}/>*/}
+                {/*</div>*/}
+            </div>
             {allPools.length > 0 ? (
                 <div>
                     <b>Pools</b>

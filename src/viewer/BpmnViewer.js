@@ -21,6 +21,8 @@ const BpmnViewer = ({ fileData, setFileData }) => {
     const [allDataStores, setAllDataStores] = useState(null);
     const [allMessageFlows, setAllMessageFlows] = useState(null);
 
+    const [ready, setReady] = useState(false);
+
     useEffect(() => {
         setupModeler();
     }, []);
@@ -46,6 +48,7 @@ const BpmnViewer = ({ fileData, setFileData }) => {
             setAllMessageFlows(selectElements("MessageFlow"));
             //Center and zoom to display whole bpmn model
             viewer.get("canvas").zoom("fit-viewport", "auto");
+            setReady(true);
         });
     };
 
@@ -229,6 +232,13 @@ const BpmnViewer = ({ fileData, setFileData }) => {
     return (
         <>
             <div id="canvas" />
+            {!ready &&
+                (
+                    <div className="position-fixed" style={{zIndex: "999", top: "53vh", left: "50%", transform: "translate(-50%, -50%)"}}>
+                        <div className="spinner-border" role="status"/>
+                    </div>
+                )
+            }
             <Toolbar
                 setFileData={setFileData}
                 addElements={addElements}

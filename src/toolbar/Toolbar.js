@@ -6,6 +6,7 @@ import InfoBar from "./infobar/InfoBar";
 import Highlightbar from "./highlightbar/Highlightbar";
 import ResetButton from "./reset/ResetButton";
 import "./Toolbar.scss";
+import HighlightBtn from "./highlightbar/HighlightBtn";
 
 const Toolbar = ({
     setFileData,
@@ -33,6 +34,8 @@ const Toolbar = ({
     const [showMessageFlows, setShowMessageFlows] = useState(true);
     const [showOverlay, setShowOverlay] = useState(false);
     const [highlightedElements, setHighlightedElements] = useState([]);
+
+    const [showHighlighter, setShowHighlighter] = useState(true);
 
     const changeDetailLevel = (level) => {
         setDetailLevel(level);
@@ -152,14 +155,22 @@ const Toolbar = ({
                 changeOverlay={changeOverlay}
             />
             {(allPools.length > 0 || allLanes.length > 0) && (
-                <Highlightbar
-                    allPools={allPools}
-                    allLanes={allLanes}
-                    highlightedElements={highlightedElements}
-                    setHighlightedElements={setHighlightedElements}
-                    highlightElement={highlightElement}
-                    removeHighlightElement={removeHighlightElement}
-                />
+                <>
+                    {showHighlighter ? (
+                        <Highlightbar
+                            allPools={allPools}
+                            allLanes={allLanes}
+                            highlightedElements={highlightedElements}
+                            setHighlightedElements={setHighlightedElements}
+                            highlightElement={highlightElement}
+                            removeHighlightElement={removeHighlightElement}
+                            setShowHighlighter={setShowHighlighter}
+                        />
+                    ) : (
+                        <HighlightBtn setShowHighlighter={setShowHighlighter}/>
+                    )
+                    }
+                </>
             )}
             <InfoBar detailLevel={detailLevel} />
             <DetailSlider
