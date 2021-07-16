@@ -8,18 +8,14 @@ import Title from "./Title";
 const RootComponent = () => {
     const [fileData, setFileData] = useState(null);
 
-    return (
-        <>
-            {fileData ? (
-                <BpmnViewer fileData={fileData} setFileData={setFileData} />
-            ) : (
-                <div className="container h-100">
-                    <Title />
-                    <FileImport setFileData={setFileData} />
-                </div>
-            )}
-        </>
-    );
+    if (!fileData) {
+        return (<div className="container h-100">
+            <Title />
+            <FileImport setFileData={setFileData} />
+        </div>);
+    }
+
+    return (<BpmnViewer fileData={fileData} setFileData={setFileData} />);
 };
 
 export default RootComponent;

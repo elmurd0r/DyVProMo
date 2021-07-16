@@ -144,22 +144,23 @@ const BpmnViewer = ({ fileData, setFileData }) => {
      * @returns array filled with model elements
      */
     const selectAllFirstElems = () => {
-        let allElements = viewer
+        return viewer
             .get("elementRegistry")
-            .filter((element) => element.type.startsWith("bpmn:"));
-        let firstElements = [];
-        allElements.forEach((element) => {
-            let alreadyAdded = false;
-            firstElements.forEach((elem) => {
-                if (elem.type === element.type) {
-                    alreadyAdded = true;
+            .filter((element) => element.type.startsWith("bpmn:"))
+            .reduce((res, elem) => {
+                if (elem.type === "bpmn:Collaboration") {
+                    return res;
                 }
-            });
-            if (!alreadyAdded && element.type !== "bpmn:Collaboration") {
-                firstElements.push(element);
-            }
-        });
-        return firstElements;
+
+                if (res.some(e => e.type === elem.type)) {
+                    return res;
+                }
+
+                return [
+                    ...res,
+                    elem
+                ];
+            }, []);
     };
 
     /**
@@ -204,7 +205,7 @@ const BpmnViewer = ({ fileData, setFileData }) => {
      * @param elem is either pool or lane
      */
     const highlightElement = (elem) => {
-        elem.businessObject.di.set("fill", "rgba(0, 80, 0, 1)");
+        elem.businessObject.di.set("fill", "rgba(60, 176, 67, 1)");
         const gfx = elementRegistry.getGraphics(elem);
         const type = elem.waypoints ? "connection" : "shape";
         graphicsFactory.update(type, elem, gfx);
