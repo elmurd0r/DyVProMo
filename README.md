@@ -1,6 +1,6 @@
-# Bpmn-detail-viewer
+# DyVProMo
 
-Bpmn-detail-viewer is a BPMN 2.0 Viewer where you can upload a BPMN 2.0 XML file, view it and change the level of detail.
+DyVProMo is a process model viewer tool where you can upload a BPMN 2.0 XML file, view it and change the level of detail.
 
 ## Development Requirements
 - Node >= 10.16 and npm >= 5.6 
