@@ -6,7 +6,7 @@ import BdvUtil from "../util/BdvUtil";
 import "./BpmnViewer.scss";
 
 const BpmnViewer = ({ fileData, setFileData }) => {
-    let viewer;
+    const [viewer, setViewer] = useState(null);
     const [canvas, setCanvas] = useState(null);
     const [overlays, setOverlays] = useState(null);
     const [elementRegistry, setElementRegistry] = useState(null);
@@ -24,13 +24,14 @@ const BpmnViewer = ({ fileData, setFileData }) => {
     const [ready, setReady] = useState(false);
 
     useEffect(() => {
-        setupModeler();
+        setViewer(new NavigatedViewer({ container: "#canvas" }));
     }, []);
 
-    const setupModeler = () => {
-        viewer = new NavigatedViewer({ container: "#canvas" });
-        importXML(fileData);
-    };
+    useEffect(()=>{
+        if(!ready && viewer !== null) {
+            importXML(fileData);
+        }
+    },[viewer])
 
     const importXML = (fileData) => {
         viewer.importXML(fileData).then(() => {
